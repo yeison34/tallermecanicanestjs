@@ -5,6 +5,7 @@ import { EmpleadoModule } from './modulos/empleado/empleado.module';
 import { TipoVehiculoModule } from './modulos/tipovehiculo/tipo-vehiculo.module';
 import { VehiculoModule } from './modulos/vehiculo/vehiculo.module';
 import { ReparacionModule } from './modulos/reparacion/reparacion.module';
+import { EspecialidadModule } from './modulos/especialidad/especialidad.module';
 @Module({
   imports:[
     TypeOrmModule.forRoot({
@@ -12,7 +13,7 @@ import { ReparacionModule } from './modulos/reparacion/reparacion.module';
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'3424',
+      password:'toro2234',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:4000,
