@@ -16,8 +16,5 @@ export class Vehiculo{
 
     @Column()
     color:string;
-
-    @Column({unique:true})
-    cedula:string;
     
 }

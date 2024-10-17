@@ -4,6 +4,7 @@ import { ClienteModule } from './modulos/cliente/cliente.module';
 import { EmpleadoModule } from './modulos/empleado/empleado.module';
 import { TipoVehiculoModule } from './modulos/tipovehiculo/tipo-vehiculo.module';
 import { VehiculoModule } from './modulos/vehiculo/vehiculo.module';
+import { ReparacionModule } from './modulos/reparacion/reparacion.module';
 @Module({
   imports:[
     TypeOrmModule.forRoot({
@@ -11,14 +12,14 @@ import { VehiculoModule } from './modulos/vehiculo/vehiculo.module';
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'1234',
+      password:'3424',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:4000,
       retryAttempts:10,
       entities:['src/**/*.entity{.ts,.js}']
     })
-    ,EmpleadoModule,ClienteModule, TipoVehiculoModule],
+    ,EmpleadoModule,ClienteModule, TipoVehiculoModule, ReparacionModule],
   controllers: [],
   providers: [],
 })
