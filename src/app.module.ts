@@ -10,7 +10,7 @@ import { TipoVehiculoModule } from './modulos/tipovehiculo/tipo-vehiculo.module'
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'postgres',
+      password:'3424',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:4000,

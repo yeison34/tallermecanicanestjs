@@ -1,12 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('tipo_vehiculo') 
+@Entity() 
 export class TipoVehiculo {
     @PrimaryGeneratedColumn() 
-    id_tipo: number; 
-
+    id: number;
     @Column({ unique: true }) 
     nombre: string; 
     @Column({ type: 'boolean', default: true }) 
-    es_activo: boolean;
+    esactivo: boolean;
 }
