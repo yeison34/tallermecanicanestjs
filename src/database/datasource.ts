@@ -12,6 +12,7 @@ export const AppDataSource = new DataSource({
   migrations: [__dirname + '/migrations/*{.ts,.js}'], 
 });
 
+
 AppDataSource.initialize()
   .then(() => {
     console.log('Conexión a la base de datos establecida!');

@@ -1,4 +1,5 @@
-import { Entity,Column,PrimaryGeneratedColumn } from "typeorm";
+import { Vehiculo } from "src/modulos/vehiculo/entities/vehiculo.entity";
+import { Entity,Column,PrimaryGeneratedColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class Cliente{
@@ -22,4 +23,7 @@ export class Cliente{
 
     @Column()
     direccion:string;    
+
+    @OneToMany(()=>Vehiculo,vehiculo=>vehiculo.cliente)
+    vehiculos:Vehiculo[]
 }
