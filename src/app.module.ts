@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClienteModule } from './modulos/cliente/cliente.module';
 import { EmpleadoModule } from './modulos/empleado/empleado.module';
+import { VehiculoModule } from './modulos/vehiculo/vehiculo.module';
 @Module({
   imports:[
     TypeOrmModule.forRoot({
@@ -9,14 +10,14 @@ import { EmpleadoModule } from './modulos/empleado/empleado.module';
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'3424',
+      password:'1234',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:3000,
       retryAttempts:10,
       entities:['src/**/*.entity{.ts,.js}']
     })
-    ,EmpleadoModule,ClienteModule],
+    ,EmpleadoModule, ClienteModule, VehiculoModule],
   controllers: [],
   providers: [],
 })
