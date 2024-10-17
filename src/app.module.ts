@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClienteModule } from './modulos/cliente/cliente.module';
 import { EmpleadoModule } from './modulos/empleado/empleado.module';
 import { TipoVehiculoModule } from './modulos/tipovehiculo/tipo-vehiculo.module';
+import { VehiculoModule } from './modulos/vehiculo/vehiculo.module';
 @Module({
   imports:[
     TypeOrmModule.forRoot({
@@ -10,7 +11,7 @@ import { TipoVehiculoModule } from './modulos/tipovehiculo/tipo-vehiculo.module'
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'3424',
+      password:'1234',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:4000,
