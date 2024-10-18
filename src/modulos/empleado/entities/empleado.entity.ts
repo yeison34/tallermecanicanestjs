@@ -1,6 +1,6 @@
 import { Especialidad } from '../../especialidad/entityes/especialidad.entity';
 import { Reparacion } from '../../reparacion/entities/reparacion.entity';
-import {Entity,Column,PrimaryGeneratedColumn, OneToMany, ManyToMany} from 'typeorm'
+import {Entity,Column,PrimaryGeneratedColumn, OneToMany, ManyToMany, ManyToOne} from 'typeorm'
 
 @Entity()
 export class Empleado{
@@ -31,6 +31,6 @@ export class Empleado{
     @OneToMany(()=>Reparacion,reparacion=>reparacion.empleado)
     reparaciones:Reparacion[];
 
-    @ManyToMany(()=>Especialidad,especialidad=>especialidad.empleado)
+    @ManyToOne(()=>Especialidad,especialidad=>especialidad.empleado)
     especialidad:Especialidad;
 }

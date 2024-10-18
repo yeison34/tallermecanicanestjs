@@ -14,6 +14,7 @@ import { Cliente } from '../cliente/entities/cliente.entity';
     TipoVehiculoModule,
     forwardRef(()=>ClienteModule)  ],
   controllers: [VehiculoController],
-  providers: [VehiculoService]
+  providers: [VehiculoService],
+  exports:[VehiculoService]
 })
 export class VehiculoModule {}

@@ -29,10 +29,10 @@ export class VehiculoController {
         }
     }
     
-    @Put(":id")
-    ActulizarVehiculo(@Param('id') id:number,@Body() vehiculo:Vehiculo){
+    @Put()
+    ActulizarVehiculo(@Body() vehiculo:VehiculoDto){
         try{
-            return this.vehiculoService.ActualizarVehiculo(id,vehiculo)   
+            return this.vehiculoService.ActualizarVehiculo(vehiculo)   
         }catch(ex){
             throw ex
         }

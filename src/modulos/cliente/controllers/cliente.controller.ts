@@ -23,10 +23,10 @@ export class ClienteController {
         }
     }
 
-    @Put(":id")
-    ActulizarCliente(@Param('id') id:number,@Body() cliente:ClienteDto){
+    @Put()
+    ActulizarCliente(@Body() cliente:ClienteDto){
         try{
-            return this.clienteService.ActualizarCliente(id,cliente)   
+            return this.clienteService.ActualizarCliente(cliente)   
         }catch(ex){
             throw ex
         }

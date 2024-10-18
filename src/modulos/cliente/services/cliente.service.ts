@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cliente } from '../entities/cliente.entity';
 import { ClienteDto } from '../dto/cliente.dto';
+
 @Injectable()
 export class ClienteService {
     constructor(
@@ -22,8 +23,8 @@ export class ClienteService {
         return this.clienteRepo.save(clienteCreate)
     }
 
-    async ActualizarCliente(id:number,cliente:ClienteDto):Promise<Cliente>{
-        const clienteActualizar=  await this.clienteRepo.findOne({where:{id:id}})
+    async ActualizarCliente(cliente:ClienteDto):Promise<Cliente>{
+        const clienteActualizar=  await this.clienteRepo.findOne({where:{id:cliente.id}})
         if(!clienteActualizar){
            throw new Error("No se ecncontro el registro")     
         }

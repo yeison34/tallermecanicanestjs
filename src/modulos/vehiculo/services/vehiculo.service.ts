@@ -15,7 +15,7 @@ export class VehiculoService {
     ){}
 
     ConsultarVehiculos():Promise<Vehiculo[]>{
-        return this.vehiculoRepo.find()
+        return this.vehiculoRepo.find({relations:['tipovehiculo','cliente']})
     }
 
     EncontrarUno(id:number):Promise<Vehiculo>{
@@ -38,10 +38,18 @@ export class VehiculoService {
         return this.vehiculoRepo.save(vehiculoCreate)
     }
 
-    async ActualizarVehiculo(id:number, vehiculo:Vehiculo) :Promise<Vehiculo>{
-        const vehiculoActualizar = await this.vehiculoRepo.findOne({where:{id:id}})
+    async ActualizarVehiculo(vehiculo:VehiculoDto) :Promise<Vehiculo>{
+        const vehiculoActualizar = await this.vehiculoRepo.findOne({where:{id:vehiculo.id}, relations: ['tipovehiculo', 'cliente'] })
         if(!vehiculoActualizar){
            throw new Error("No se encontro el vehiculo")     
+        }
+        const tipoVehiculo=await this.tipoVehiculorepo.findOne({where:{id:vehiculo.idtipovehiculo}})
+        if(!tipoVehiculo){
+            throw new Error("No se encontró el tipo de vehículo");
+        }
+        const cliente=await this.clienteservicio.ConsultaClientePorId(vehiculo.idcliente)
+        if(!cliente){
+            throw new Error("No se encontró el cliente");
         }
         this.vehiculoRepo.merge(vehiculoActualizar, vehiculo)
         return this.vehiculoRepo.save(vehiculoActualizar)
