@@ -17,9 +17,9 @@ import { ReparacionModule } from './modulos/reparacion/reparacion.module';
       synchronize:false,
       retryDelay:4000,
       retryAttempts:10,
-      entities:['src/**/*.entity{.ts,.js}']
+      entities:[__dirname + '/../**/*.entity{.ts,.js}']
     })
-    ,EmpleadoModule,ClienteModule, TipoVehiculoModule, ReparacionModule],
+    ,EmpleadoModule,ClienteModule, TipoVehiculoModule, ReparacionModule,VehiculoModule],
   controllers: [],
   providers: [],
 })

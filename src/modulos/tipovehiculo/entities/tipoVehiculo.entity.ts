@@ -10,5 +10,5 @@ export class TipoVehiculo {
     @Column({ type: 'boolean', default: true }) 
     esactivo: boolean;
     @OneToMany(()=>Vehiculo,vehiculo=>vehiculo.tipovehiculo)
-    vehiculos:Vehiculo[]
+    vehiculos:Vehiculo[];
 }

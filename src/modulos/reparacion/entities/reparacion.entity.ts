@@ -11,8 +11,8 @@ export class Reparacion{
     fechaingreso:Date;
 
     @ManyToOne(()=>Vehiculo,vehiculo=>vehiculo.reparaciones)
-    vehiculo:Vehiculo
+    vehiculo:Vehiculo;
 
     @ManyToOne(()=>Empleado,empleado=>empleado.reparaciones)
-    empleado:Empleado
+    empleado:Empleado;
 }

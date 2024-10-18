@@ -27,6 +27,6 @@ export class Vehiculo{
     cliente:Cliente;
 
     @OneToMany(()=>Reparacion,reparacion=>reparacion.vehiculo)
-    reparaciones:Reparacion[]
+    reparaciones:Reparacion[];
 
 }

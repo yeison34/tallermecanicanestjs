@@ -29,5 +29,5 @@ export class Empleado{
     fechaingreso:Date;
 
     @OneToMany(()=>Reparacion,reparacion=>reparacion.empleado)
-    reparaciones:Reparacion[]
+    reparaciones:Reparacion[];
 }
