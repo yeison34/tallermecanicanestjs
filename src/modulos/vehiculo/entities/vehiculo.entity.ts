@@ -1,6 +1,6 @@
-import { Cliente } from 'src/modulos/cliente/entities/cliente.entity';
-import { Reparacion } from 'src/modulos/reparacion/entities/reparacion.entity';
-import { TipoVehiculo } from 'src/modulos/tipovehiculo/entities/tipoVehiculo.entity';
+import { Cliente } from '../../cliente/entities/cliente.entity';
+import { Reparacion } from '../../reparacion/entities/reparacion.entity';
+import { TipoVehiculo } from '../../tipovehiculo/entities/tipoVehiculo.entity';
 import {Entity,Column,PrimaryGeneratedColumn, ManyToOne, OneToMany} from 'typeorm'
 
 @Entity()

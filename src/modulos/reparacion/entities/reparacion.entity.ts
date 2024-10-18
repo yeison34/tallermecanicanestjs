@@ -1,5 +1,5 @@
-import { Empleado } from "src/modulos/empleado/entities/empleado.entity";
-import { Vehiculo } from "src/modulos/vehiculo/entities/vehiculo.entity";
+import { Empleado } from "../../empleado/entities/empleado.entity";
+import { Vehiculo } from "../../vehiculo/entities/vehiculo.entity";
 import { Entity,Column,PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 
 @Entity()
@@ -7,7 +7,7 @@ export class Reparacion{
     @PrimaryGeneratedColumn()
     id:number;
 
-    @Column()
+    @Column({type:'timestamp',default:()=>'CURRENT_TIMESTAMP'})
     fechaingreso:Date;
 
     @ManyToOne(()=>Vehiculo,vehiculo=>vehiculo.reparaciones)

@@ -1,5 +1,4 @@
-import { Reparacion } from 'src/modulos/reparacion/entities/reparacion.entity';
-import { Vehiculo } from 'src/modulos/vehiculo/entities/vehiculo.entity';
+import { Reparacion } from '../../reparacion/entities/reparacion.entity';
 import {Entity,Column,PrimaryGeneratedColumn, OneToMany} from 'typeorm'
 
 @Entity()
