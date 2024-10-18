@@ -1,23 +1,31 @@
-import {Entity,Column,PrimaryGeneratedColumn} from 'typeorm'
+import { Cliente } from 'src/modulos/cliente/entities/cliente.entity';
+//import { TipoVehiculo } from 'src/modulos/tipovehiculo/entities/tipovehiculo.entity';
+import {Entity,Column,PrimaryGeneratedColumn, ManyToOne} from 'typeorm'
 
-@Entity()
-export class Vehiculo{
+@Entity("vehiculo")
+export class Vehiculo {
     @PrimaryGeneratedColumn()
     id:number;
 
-    @Column()
+    @Column({type: "varchar"})
     placa:string;
 
-    @Column()
+    @Column({type: "varchar"})
     modelo:string;
 
-    @Column()
+    @Column({type: "varchar"})
     marca:string;
 
-    @Column()
+    @Column({type: "varchar"})
     color:string;
 
-    @Column({unique:true})
+    @Column({type: "varchar", unique:true})
     cedula:string;
+
+    // @ManyToOne(() => TipoVehiculo, tipoVehiculo => tipoVehiculo.id)
+    // idtipovehiculo: TipoVehiculo;
+
+    @ManyToOne(() => Cliente, cliente => cliente.id)
+    idcliente: Cliente;
     
 }
