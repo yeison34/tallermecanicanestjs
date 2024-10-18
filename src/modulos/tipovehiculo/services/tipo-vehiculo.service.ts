@@ -28,4 +28,12 @@ export class TipoVehiculoService {
         this.tipoVehiculoRepo.merge(tipoVehiculoActualizar, tipoVehiculo);
         return this.tipoVehiculoRepo.save(tipoVehiculoActualizar);
     }
+
+    async EliminarTipoVehiculo(id: number): Promise<void> {
+        const tipoVehiculoEliminar = await this.tipoVehiculoRepo.findOne({ where: { id_tipo: id } });
+        if (!tipoVehiculoEliminar) {
+            throw new Error("No se encontró el registro");
+        }
+        await this.tipoVehiculoRepo.remove(tipoVehiculoEliminar);
+    }
 }

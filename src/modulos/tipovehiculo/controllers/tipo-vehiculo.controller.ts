@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { TipoVehiculoService } from '../services/tipo-vehiculo.service';
 import { TipoVehiculo } from '../entities/tipoVehiculo.entity';
 
@@ -27,6 +27,15 @@ export class TipoVehiculoController {
     ActualizarTipoVehiculo(@Param('id') id: number, @Body() tipoVehiculo: TipoVehiculo) {
         try {
             return this.tipoVehiculoService.ActualizarTipoVehiculo(id, tipoVehiculo);
+        } catch (ex) {
+            throw ex;
+        }
+    }
+
+    @Delete(':id')
+    EliminarTipoVehiculo(@Param('id') id: number) {
+        try {
+            return this.tipoVehiculoService.EliminarTipoVehiculo(id);
         } catch (ex) {
             throw ex;
         }
