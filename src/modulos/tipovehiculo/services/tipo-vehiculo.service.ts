@@ -19,7 +19,7 @@ export class TipoVehiculoService {
     }
 
     async ActualizarTipoVehiculo(id: number, tipoVehiculo: TipoVehiculo): Promise<TipoVehiculo> {
-        const tipoVehiculoActualizar = await this.tipoVehiculoRepo.findOne({ where: { id_tipo: id } });
+        const tipoVehiculoActualizar = await this.tipoVehiculoRepo.findOne({ where: { id: id } });
         
         if (!tipoVehiculoActualizar) {
             throw new Error('No se encontró el tipo de vehículo');

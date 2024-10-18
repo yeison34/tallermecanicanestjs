@@ -2,6 +2,7 @@
 import { Body, Controller,Get, Param, Post,Put,Delete } from '@nestjs/common';
 import { VehiculoService } from '../services/vehiculo.service';
 import { Vehiculo } from '../entities/vehiculo.entity';
+import { VehiculoDto } from '../dto/vehiculo.dto';
 
 @Controller('vehiculo')
 export class VehiculoController {
@@ -20,7 +21,7 @@ export class VehiculoController {
     }
     
     @Post()
-    InsertarVehiculo(@Body() vehiculo:Vehiculo){
+    InsertarVehiculo(@Body() vehiculo:VehiculoDto){
         try{
             return this.vehiculoService.InsertarVehiculo(vehiculo)
         } catch(ex){

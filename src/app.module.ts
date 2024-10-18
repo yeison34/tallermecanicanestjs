@@ -13,14 +13,14 @@ import { EspecialidadModule } from './modulos/especialidad/especialidad.module';
       host:'localhost',
       port:5432,
       username:'postgres',
-      password:'toro2234',
+      password:'3424',
       database:'tallermecanicanest',
       synchronize:false,
       retryDelay:4000,
       retryAttempts:10,
       entities: ['src/**/*.entity{.ts,.js}'],
     })
-    ,EmpleadoModule,ClienteModule, TipoVehiculoModule, ReparacionModule,VehiculoModule],
+    ,EmpleadoModule,ClienteModule, TipoVehiculoModule, ReparacionModule,VehiculoModule,EspecialidadModule],
   controllers: [],
   providers: [],
 })

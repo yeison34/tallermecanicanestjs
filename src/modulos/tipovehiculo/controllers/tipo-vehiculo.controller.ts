@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { TipoVehiculoService } from '../services/tipo-vehiculo.service';
 import { TipoVehiculo } from '../entities/tipoVehiculo.entity';
 
-@Controller('tipo-vehiculo')
+@Controller('tipovehiculo')
 export class TipoVehiculoController {
     
     constructor(

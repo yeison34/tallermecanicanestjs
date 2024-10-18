@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, } from '@nestjs/common';
 import { EspecialidadService } from '../services/especialidad.service';
-import { Especialidad } from 'src/modulos/especialidad/entityes/especialidad.entity'; // Asegúrate de importar la entidad correcta
+import { Especialidad } from '../entityes/especialidad.entity'; // Asegúrate de importar la entidad correcta
 
 @Controller('especialidad')
 export class EspecialidadController {

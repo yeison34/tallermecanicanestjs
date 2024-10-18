@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Especialidad } from 'src/modulos/especialidad/entityes/especialidad.entity'; // Asegúrate de importar la entidad correcta
+import { Especialidad } from '../entityes/especialidad.entity'; // Asegúrate de importar la entidad correcta
 
 @Injectable()
 export class EspecialidadService {

@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Empleado } from '../../empleado/entities/empleado.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 @Entity()
 export class Especialidad {
   @PrimaryGeneratedColumn('increment')
@@ -12,4 +13,7 @@ export class Especialidad {
 
   @Column({ default: true })
   estado: boolean;
+
+  @OneToMany(()=>Empleado,empleado=>empleado.especialidad)
+  empleado:Empleado[];
 }
