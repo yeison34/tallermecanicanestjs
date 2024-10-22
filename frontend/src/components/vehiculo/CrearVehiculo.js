@@ -8,7 +8,7 @@ function CrearVehiculo(){
     const [modelo, setModelo] = useState('');
     const [marca, setMarca] = useState('');
     const [color, setColor] = useState('');
-    const [cedula, setCedula] = useState('');
+    //const [cedula, setCedula] = useState('');
     const [tipoVehiculo, setTipoVehiculo] = useState('');
     const [cliente, setCliente] = useState('');
 
@@ -17,13 +17,23 @@ function CrearVehiculo(){
     const [clientes, setClientes] = useState([]);
     const [clienteId, setClienteId] = useState(0);
 
+    const headersNgrok = {
+        "Content-Type": "application/json",
+        'ngrok-skip-browser-warning': 'true',
+        'Access-Control-Allow-Origin': '*'        
+    }
+
     useEffect(
         () => {
-            api.get('/tipovehiculo')
+            api.get('/tipovehiculo',{
+                headers: headersNgrok
+            })
             .then(response => setTiposVehiculo(response.data))
             .catch(error => console.error("Error: ", error));
 
-            api.get('/cliente')
+            api.get('/cliente',{
+                headers: headersNgrok
+            })
             .then(response => setClientes(response.data))
             .catch(error => console.error("Error: ", error));
 
@@ -33,8 +43,8 @@ function CrearVehiculo(){
     );
 
     const handleSubmit = async() => {
-        console.log(placa, modelo, marca, color, cedula);
-        if(placa == '' || modelo == '' || marca == '' || color == '' || cedula == '' || tipoVehiculoId == 0 || clienteId == 0){
+        console.log(placa, modelo, marca, color);
+        if(placa == '' || modelo == '' || marca == '' || color == '' || tipoVehiculoId == 0 || clienteId == 0){
             return Swal.fire({
                 title: 'Registrar todos los campos!',
                 icon: 'error',
@@ -44,7 +54,7 @@ function CrearVehiculo(){
             })
         }
 
-        const nuevoVehiculo = { placa, modelo, marca, color, cedula, tipovehiculo:{id: tipoVehiculoId}, cliente: {id: clienteId}}
+        const nuevoVehiculo = { placa, modelo, marca, color, tipovehiculo:{id: tipoVehiculoId}, cliente: {id: clienteId}}
         console.log("Nuevo vehiculo: ", nuevoVehiculo);
 
         Swal.fire({
@@ -57,11 +67,6 @@ function CrearVehiculo(){
                 api.post('/vehiculo', nuevoVehiculo)
                 .then(response => {
                     console.log('Vehiculo creado', response.data);
-                    setPlaca('');
-                    setModelo('');
-                    setMarca('');
-                    setColor('');
-                    setCedula('');
 
                     Swal.fire({
                         title: 'Vehiculo creado',
@@ -113,10 +118,6 @@ function CrearVehiculo(){
                     <label htmlFor="color" className="form-label">Color</label>
                     <input type="text" id="color" className="form-control" placeholder="Color" value={color} onChange={(e) => {setColor(e.target.value)}} required/>
                     </div>
-                <div className="col-6 mb-3">
-                    <label htmlFor="cedula" className="form-label">Cedula</label>
-                    <input type="text" id="cedula" className="form-control" placeholder="Cedula" value={cedula} onChange={(e) => {setCedula(e.target.value)}} required/>
-                </div>
                 <div className="col-6 mb-3">
                     <label htmlFor="tiposvehiculo" className="form-label">Tipo vehiculo</label>
                     <select id="tiposvehiculo" className="form-select" onChange={(e) => { setTipoVehiculoId(+e.target.value)}}>

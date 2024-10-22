@@ -10,31 +10,40 @@ function ActualizarVehiculo(){
     const [modelo, setModelo] = useState('');
     const [marca, setMarca] = useState('');
     const [color, setColor] = useState('');
-    const [cedula, setCedula] = useState('');
-
     const [tiposVehiculo, setTiposVehiculo] = useState([]);
     const [tipoVehiculoId, setTipoVehiculoId] = useState(0);
     const [clientes, setClientes] = useState([]);
     const [clienteId, setClienteId] = useState(0);
 
+    const headersNgrok = {
+        "Content-Type": "application/json",
+        'ngrok-skip-browser-warning': 'true',
+        'Access-Control-Allow-Origin': '*'        
+    }
+
     useEffect(
         () => {
-            api.get('/tipovehiculo')
+            api.get('/tipovehiculo', {
+                headers: headersNgrok
+            })
             .then(response => setTiposVehiculo(response.data))
             .catch(error => console.error("Error: ", error));
 
-            api.get('/cliente')
+            api.get('/cliente', {
+                headers: headersNgrok
+            })
             .then(response => setClientes(response.data))
             .catch(error => console.error("Error: ", error));   
                    
-            api.get(`/vehiculo/${id}`)
+            api.get(`/vehiculo/${id}`, {
+                headers: headersNgrok
+            })
             .then(response => { 
                 const vehiculo = response.data;
                 setPlaca(vehiculo.placa);
                 setModelo(vehiculo.modelo);
                 setMarca(vehiculo.marca);
-                setColor(vehiculo.color);
-                setCedula(vehiculo.cedula);                    
+                setColor(vehiculo.color);                
                 setTipoVehiculoId(vehiculo.tipovehiculo?.id || '');                    
                 setClienteId(vehiculo.cliente?.id || '');    
             })
@@ -49,7 +58,7 @@ function ActualizarVehiculo(){
     );
 
     const handleSubmit = async() => {        
-        if(placa == '' || modelo == '' || marca == '' || color == '' || cedula == '' || tipoVehiculoId == 0 || clienteId == 0){
+        if(placa == '' || modelo == '' || marca == '' || color == '' || tipoVehiculoId == 0 || clienteId == 0){
             return Swal.fire({
                 title: 'Registrar todos los campos!',
                 icon: 'error',
@@ -59,8 +68,8 @@ function ActualizarVehiculo(){
             })
         }
 
-        const actualizarVehiculo = { placa, modelo, marca, color, cedula, tipovehiculo:{id: tipoVehiculoId}, cliente: {id: clienteId}}
-
+        const actualizarVehiculo = { placa, modelo, marca, color, tipovehiculo:{id: tipoVehiculoId}, cliente: {id: clienteId}}
+        console.log(actualizarVehiculo);
         Swal.fire({
             title: "Esta seguro de confirmar esta acción?",
             showCancelButton: true,
@@ -118,10 +127,7 @@ function ActualizarVehiculo(){
                     <label htmlFor="color" className="form-label">Color</label>
                     <input type="text" id="color" className="form-control" placeholder="Color" value={color} onChange={(e) => {setColor(e.target.value)}} required/>
                     </div>
-                <div className="col-6 mb-3">
-                    <label htmlFor="cedula" className="form-label">Cedula</label>
-                    <input type="text" id="cedula" className="form-control" placeholder="Cedula" value={cedula} onChange={(e) => {setCedula(e.target.value)}} required/>
-                </div>
+                
                 <div className="col-6 mb-3">
                     <label htmlFor="tiposvehiculo" className="form-label">Tipo vehiculo</label>
                     <select id="tiposvehiculo" className="form-select" value={tipoVehiculoId} onChange={(e) => { setTipoVehiculoId(+e.target.value)}}>

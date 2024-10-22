@@ -41,8 +41,16 @@ function Vehiculo({onSelectVehiculo}){
         }})
     }
 
+    const headersNgrok = {
+        "Content-Type": "application/json",
+        'ngrok-skip-browser-warning': 'true',
+        'Access-Control-Allow-Origin': '*'        
+    }
+
     const fetchVehiculos = () => {
-        api.get('/vehiculo')
+        api.get('/vehiculo', {
+            headers: headersNgrok
+        })
             .then(response => setVehiculos(response.data))
             .catch(error => console.error("Error: ", error));
     }

@@ -25,10 +25,17 @@ function DetallesVehiculo(){
     const [clienteEmail, setClienteEmail] = useState('');
     const [clienteDireccion, setClienteDireccion] = useState('');
     //const [clienteId, setClienteId] = useState(vehiculo.cliente?.id || '');
+    const headersNgrok = {
+        "Content-Type": "application/json",
+        'ngrok-skip-browser-warning': 'true',
+        'Access-Control-Allow-Origin': '*'        
+    }
 
     useEffect(
         () => {
-            api.get(`/vehiculo/${id}`)
+            api.get(`/vehiculo/${id}`, {
+                headers: headersNgrok
+            })
             .then(response => { 
                 const vehiculo = response.data;
                 setPlaca(vehiculo.placa);
@@ -56,9 +63,7 @@ function DetallesVehiculo(){
         },
     []);
 
-    // if(!detallesVehiculo){
-    //     return <p>El vehiculo seleccionado no tiene información</p>
-    // }
+ 
     return(
         <section>
             <header>
