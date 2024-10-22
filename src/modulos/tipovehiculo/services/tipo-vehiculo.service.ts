@@ -35,5 +35,5 @@ export class TipoVehiculoService {
             throw new Error("No se encontró el registro");
         }
         await this.tipoVehiculoRepo.remove(tipoVehiculoEliminar);
-    }
+    }0
 }
