@@ -14,7 +14,6 @@ function ActualizarTipoVehiculo() {
     'Access-Control-Allow-Origin': '*'        
   };
 
-  // Cargar datos al cargar el componente
   useEffect(() => {
     api.get(`/tipovehiculo/${id}`, { headers: headersNgrok })
       .then(response => {

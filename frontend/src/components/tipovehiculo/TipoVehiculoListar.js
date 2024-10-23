@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import api from "../../axiosConfig"; // Configuración para hacer peticiones
+import api from "../../axiosConfig"; 
 
 function TipoVehiculoListar() {
   const [tiposVehiculo, setTiposVehiculo] = useState([]);

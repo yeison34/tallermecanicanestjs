@@ -12,7 +12,11 @@ import CrearTipoVehiculo from './components/tipovehiculo/CrearTipoVehiculo';
 import TipoVehiculoListar from './components/tipovehiculo/TipoVehiculoListar'; // Asegúrate de importar el componente
 import DetallesTipoVehiculo from './components/tipovehiculo/DetallesTipoVehiculo'; // Componente de detalles
 import ActualizarTipoVehiculo from './components/tipovehiculo/ActualizarTipoVehiculo';
-
+import ClienteMain from "./components/cliente/ClienteMain";
+import ClienteListar from "./components/cliente/ClienteListar";
+import CrearCliente from "./components/cliente/CrearCliente";
+import ActualizarCliente from "./components/cliente/ActualizarCliente";
+import DetallesCliente from "./components/cliente/DetallesCliente";
 function App() {
   return (
     <Router>
@@ -31,6 +35,11 @@ function App() {
             <Route path="/vehiculos/detalles/:id" element={<DetallesVehiculo />} />
             <Route path="/tipovehiculo/detalles/:id" element={<DetallesTipoVehiculo />} />
             <Route path="/tipovehiculo/actualizar/:id" element={<ActualizarTipoVehiculo />} />
+            <Route path="/clientes" element={<ClienteMain />} />
+            <Route path="/clientes/listar" element={<ClienteListar />} />
+            <Route path="/clientes/crear" element={<CrearCliente />} />
+            <Route path="/clientes/actualizar/:id" element={<ActualizarCliente />} />
+            <Route path="/clientes/detalles/:id" element={<DetallesCliente />} />
           </Routes>
         </div>
       </div>

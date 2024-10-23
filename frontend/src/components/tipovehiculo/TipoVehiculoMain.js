@@ -11,7 +11,6 @@ function TipoVehiculoMain() {
 
       <section className="table-wrapper">
         <div className="sections-wrapper">
-          {/* Enlace para crear un nuevo tipo de vehículo */}
           <Link className="link-section" to="/tipovehiculo/crear">
             <div className="module">
               <div className="module-container-image">
@@ -25,7 +24,6 @@ function TipoVehiculoMain() {
             </div>
           </Link>
 
-          {/* Enlace corregido para ver el listado de tipos de vehículos */}
           <Link className="link-section" to="/tipovehiculo/listar">
             <div className="module">
               <div className="module-container-image">

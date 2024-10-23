@@ -1,25 +1,45 @@
-import React, {useEffect, useState} from "react";
-import api from "../../axiosConfig";
-import Cliente from "./Cliente";
+import React from "react";
+import { Link } from "react-router-dom";
 
 function ClienteMain() {
-  
   return (
-  <main>
-    <header className="header">
+    <main>
+      <header className="header">
         <h2>Clientes</h2>
-        <p>Clientes registrados en nuestra plataforma</p>
-    </header>
+        <p>Gestiona los clientes del taller.</p>
+      </header>
 
-    <section className="table-wrapper">
-        <div className="btn-wrapper">
-            <button class="btn btn-success">Crear un cliente</button>
+      <section className="table-wrapper">
+        <div className="sections-wrapper">
+          <Link className="link-section" to="/clientes/crear">
+            <div className="module">
+              <div className="module-container-image">
+                <div className="module-img">
+                  <i className="bx bx-plus icon"></i>
+                </div>
+              </div>
+              <div className="text-container">
+                <span className="module-text">Crear un Cliente</span>
+              </div>
+            </div>
+          </Link>
 
+          <Link className="link-section" to="/clientes/listar">
+            <div className="module">
+              <div className="module-container-image">
+                <div className="module-img">
+                  <i className="bx bx-list-ol icon"></i>
+                </div>
+              </div>
+              <div className="text-container">
+                <span className="module-text">Ver todos los registros</span>
+              </div>
+            </div>
+          </Link>
         </div>
-        <Cliente/>
-    </section>
-  </main>)
-
+      </section>
+    </main>
+  );
 }
 
 export default ClienteMain;
