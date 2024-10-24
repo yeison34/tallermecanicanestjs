@@ -10,6 +10,13 @@ import Vehiculo from './components/vehiculo/Vehiculo';
 import DetallesVehiculo from './components/vehiculo/DetallesVehiculo';
 import CrearVehiculo from './components/vehiculo/CrearVehiculo';
 import ActualizarVehiculo from './components/vehiculo/ActualizarVehiculo';
+import EmpleadoMain from './components/empleado/EmpleadoMain';
+import Empleado from './components/empleado/Empleado';
+import CrearEmpleado from './components/empleado/CrearEmpleado';
+import DetallesEmpleado from './components/empleado/DetallesEmpleado';
+import ActualizarEmpleado from './components/empleado/ActualizarEmpleado';
+
+
 
 function App() {
   const [selectedClienteId, setSelectedClienteId] = useState(null)
@@ -28,7 +35,11 @@ function App() {
             <Route path='/vehiculos/crear' element={<CrearVehiculo/>}/>
             <Route path='/vehiculos/listar' element={<Vehiculo/>}/>
             <Route path='/vehiculos/detalles/:id' element={<DetallesVehiculo/>}/>
-
+            <Route path='/empleados' element={<EmpleadoMain/>}/>
+            <Route path='/empleados/listar' element={<Empleado/>}/>
+            <Route path='/empleados/crear' element={<CrearEmpleado/>}/>
+            <Route path='/empleados/detalles/:id' element={<DetallesEmpleado/>}/>
+            <Route path='/empleados/actualizar/:id' element={<ActualizarEmpleado/>}/>
           </Routes>
         </div>
       </div>
