@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 function ActualizarCliente() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [cliente, setCliente] = useState({ nombre: '', esactivo: true });
+  const [cliente, setCliente] = useState({ nombres: '', esactivo: true });
 
   useEffect(() => {
     api.get(`/clientes/${id}`)
@@ -62,17 +62,69 @@ function ActualizarCliente() {
     <div className="container">
       <h2>Actualizar Cliente</h2>
       <div className="mb-3">
-        <label htmlFor="nombre" className="form-label">Nombre</label>
+        <label htmlFor="nombres" className="form-label">Nombre</label>
         <input
           type="text"
-          id="nombre"
-          name="nombre"
+          id="nombres"
+          name="nombres"
           className="form-control"
-          value={cliente.nombre}
+          value={cliente.nombres}
           onChange={handleChange}
           required
         />
       </div>
+      <div className="mb-3">
+        <label htmlFor="apellidos" className="form-label">Apellidos</label>
+        <input
+          type="text"
+          id="apellidos"
+          name="apellidos"
+          className="form-control"
+          value={cliente.apellidos}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="direccion" className="form-label">Dirección</label>
+        <input
+          type="text"
+          id="direccion"
+          name="direccion"
+          className="form-control"
+          value={cliente.direccion}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="telefono" className="form-label">Teléfono</label>
+        <input
+          type="text"
+          id="telefono"
+          name="telefono"
+          className="form-control"
+          value={cliente.telefono}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">Email</label>
+        <input
+          type="text"
+          id="email"
+          name="email"
+          className="form-control"
+          value={cliente.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
       <div className="mb-3 form-check">
         <input
           type="checkbox"
