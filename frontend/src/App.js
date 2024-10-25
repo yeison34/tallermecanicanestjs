@@ -17,6 +17,14 @@ import ClienteListar from "./components/cliente/ClienteListar";
 import CrearCliente from "./components/cliente/CrearCliente";
 import ActualizarCliente from "./components/cliente/ActualizarCliente";
 import DetallesCliente from "./components/cliente/DetallesCliente";
+import EmpleadoMain from './components/empleado/EmpleadoMain';
+import Empleado from './components/empleado/Empleado';
+import CrearEmpleado from './components/empleado/CrearEmpleado';
+import DetallesEmpleado from './components/empleado/DetallesEmpleado';
+import ActualizarEmpleado from './components/empleado/ActualizarEmpleado';
+
+
+
 function App() {
   return (
     <Router>
@@ -25,21 +33,26 @@ function App() {
         <div className='container mt-4'>
           <Routes>
             <Route path="/" element={<h2>Esta es una app</h2>} />
-            <Route path="/vehiculos" element={<VehiculoMain />} />
             <Route path="/tiposvehiculo" element={<TipoVehiculoMain />} />
             <Route path="/tipovehiculo/crear" element={<CrearTipoVehiculo />} />
             <Route path="/tipovehiculo/listar" element={<TipoVehiculoListar />} /> 
+            <Route path="/tipovehiculo/detalles/:id" element={<DetallesTipoVehiculo />} />
+            <Route path="/tipovehiculo/actualizar/:id" element={<ActualizarTipoVehiculo />} />
+            <Route path="/vehiculos" element={<VehiculoMain />} />
             <Route path="/vehiculos/crear" element={<CrearVehiculo />} />
             <Route path="/vehiculos/listar" element={<Vehiculo />} />
             <Route path="/vehiculos/actualizar/:id" element={<ActualizarVehiculo />} />
             <Route path="/vehiculos/detalles/:id" element={<DetallesVehiculo />} />
-            <Route path="/tipovehiculo/detalles/:id" element={<DetallesTipoVehiculo />} />
-            <Route path="/tipovehiculo/actualizar/:id" element={<ActualizarTipoVehiculo />} />
             <Route path="/clientes" element={<ClienteMain />} />
             <Route path="/clientes/listar" element={<ClienteListar />} />
             <Route path="/clientes/crear" element={<CrearCliente />} />
             <Route path="/clientes/actualizar/:id" element={<ActualizarCliente />} />
             <Route path="/clientes/detalles/:id" element={<DetallesCliente />} />
+            <Route path='/empleados' element={<EmpleadoMain/>}/>
+            <Route path='/empleados/listar' element={<Empleado/>}/>
+            <Route path='/empleados/crear' element={<CrearEmpleado/>}/>
+            <Route path='/empleados/detalles/:id' element={<DetallesEmpleado/>}/>
+            <Route path='/empleados/actualizar/:id' element={<ActualizarEmpleado/>}/>
           </Routes>
         </div>
       </div>
