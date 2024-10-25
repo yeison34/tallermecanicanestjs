@@ -1,7 +1,5 @@
-import logo from './logo.svg';
-import React, {useState}from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import ClienteMain from './components/cliente/ClienteMain';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/ui-components/Navbar';
 import VehiculoMain from './components/vehiculo/VehiculoMain';
@@ -10,33 +8,42 @@ import Vehiculo from './components/vehiculo/Vehiculo';
 import DetallesVehiculo from './components/vehiculo/DetallesVehiculo';
 import CrearVehiculo from './components/vehiculo/CrearVehiculo';
 import ActualizarVehiculo from './components/vehiculo/ActualizarVehiculo';
-
+import CrearTipoVehiculo from './components/tipovehiculo/CrearTipoVehiculo';
+import TipoVehiculoListar from './components/tipovehiculo/TipoVehiculoListar'; // Asegúrate de importar el componente
+import DetallesTipoVehiculo from './components/tipovehiculo/DetallesTipoVehiculo'; // Componente de detalles
+import ActualizarTipoVehiculo from './components/tipovehiculo/ActualizarTipoVehiculo';
+import ClienteMain from "./components/cliente/ClienteMain";
+import ClienteListar from "./components/cliente/ClienteListar";
+import CrearCliente from "./components/cliente/CrearCliente";
+import ActualizarCliente from "./components/cliente/ActualizarCliente";
+import DetallesCliente from "./components/cliente/DetallesCliente";
 function App() {
-  const [selectedClienteId, setSelectedClienteId] = useState(null)
   return (
     <Router>
       <div>
-        <Navbar/>
+        <Navbar />
         <div className='container mt-4'>
           <Routes>
-            <Route path='/' element={<h2>Esta es una app</h2>}/>
-            <Route path='/clientes' element={<ClienteMain/>}/>
-            <Route path='/vehiculos' element={<VehiculoMain/>}/>
-            <Route path='/tiposvehiculo' element={<TipoVehiculoMain/>}/>
-            
-            <Route path='/vehiculos/actualizar/:id' element={<ActualizarVehiculo/>}/>
-            <Route path='/vehiculos/crear' element={<CrearVehiculo/>}/>
-            <Route path='/vehiculos/listar' element={<Vehiculo/>}/>
-            <Route path='/vehiculos/detalles/:id' element={<DetallesVehiculo/>}/>
-
+            <Route path="/" element={<h2>Esta es una app</h2>} />
+            <Route path="/vehiculos" element={<VehiculoMain />} />
+            <Route path="/tiposvehiculo" element={<TipoVehiculoMain />} />
+            <Route path="/tipovehiculo/crear" element={<CrearTipoVehiculo />} />
+            <Route path="/tipovehiculo/listar" element={<TipoVehiculoListar />} /> 
+            <Route path="/vehiculos/crear" element={<CrearVehiculo />} />
+            <Route path="/vehiculos/listar" element={<Vehiculo />} />
+            <Route path="/vehiculos/actualizar/:id" element={<ActualizarVehiculo />} />
+            <Route path="/vehiculos/detalles/:id" element={<DetallesVehiculo />} />
+            <Route path="/tipovehiculo/detalles/:id" element={<DetallesTipoVehiculo />} />
+            <Route path="/tipovehiculo/actualizar/:id" element={<ActualizarTipoVehiculo />} />
+            <Route path="/clientes" element={<ClienteMain />} />
+            <Route path="/clientes/listar" element={<ClienteListar />} />
+            <Route path="/clientes/crear" element={<CrearCliente />} />
+            <Route path="/clientes/actualizar/:id" element={<ActualizarCliente />} />
+            <Route path="/clientes/detalles/:id" element={<DetallesCliente />} />
           </Routes>
         </div>
       </div>
     </Router>
-    // <div className="App">
-    //   <h1>Taller mecánico</h1>
-    //   <Cliente onSelectCliente={setSelectedClienteId}></Cliente>
-    // </div>
   );
 }
 

@@ -1,17 +1,24 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete, NotFoundException } from '@nestjs/common';
 import { TipoVehiculoService } from '../services/tipo-vehiculo.service';
 import { TipoVehiculo } from '../entities/tipoVehiculo.entity';
 
 @Controller('tipovehiculo')
 export class TipoVehiculoController {
     
-    constructor(
-        private tipoVehiculoService: TipoVehiculoService
-    ) {}
+    constructor(private tipoVehiculoService: TipoVehiculoService) {}
 
     @Get()
     ConsultarTiposVehiculo() {
-       return this.tipoVehiculoService.ConsultarTiposVehiculo();
+        return this.tipoVehiculoService.ConsultarTiposVehiculo();
+    }
+
+    @Get(':id')
+    async obtenerTipoVehiculo(@Param('id') id: number) {
+        const tipoVehiculo = await this.tipoVehiculoService.ObtenerTipoVehiculo(id);
+        if (!tipoVehiculo) {
+            throw new NotFoundException(`Tipo de vehículo con ID ${id} no encontrado`);
+        }
+        return tipoVehiculo;
     }
 
     @Post()
@@ -30,5 +37,10 @@ export class TipoVehiculoController {
         } catch (ex) {
             throw ex;
         }
+    }
+
+    @Delete(':id') 
+    EliminarTipoVehiculo(@Param('id') id: number) {
+        return this.tipoVehiculoService.EliminarTipoVehiculo(id);
     }
 }

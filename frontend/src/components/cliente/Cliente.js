@@ -1,46 +1,68 @@
-import React, {useEffect, useState} from "react";
-import api from "../../axiosConfig";
+const express = require("express");
+const router = express.Router();
+const { Cliente } = require("../models");
 
-/*Componente Cliente */
-function Cliente({onSelectCliente}){
-    const [cliente, setClientes] = useState([]);
+// Obtener todos los clientes
+router.get("/", async (req, res) => {
+  try {
+    const clientes = await Cliente.findAll();
+    res.json(clientes);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-    useEffect(
-        () => {
-            api.get('/cliente')
-            .then(response => setClientes(response.data))
-            .catch(error => console.error("Error: ", error));
-        },
-    []);
+// Obtener un cliente por ID
+router.get("/:id", async (req, res) => {
+  try {
+    const cliente = await Cliente.findByPk(req.params.id);
+    if (!cliente) {
+      return res.status(404).json({ message: "Cliente no encontrado" });
+    }
+    res.json(cliente);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
-    return(
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cédula</th>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">Teléfono</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Dirección</th>
-                </tr>
-            </thead>
-            <tbody>
-                {cliente.map(cli => (
-                    <tr>
-                        <td key={cli.id} onClick={() => {onSelectCliente(cli.id)}}> 
-                        {cli.id} </td>
-                        <td> {cli.cedula} </td>
-                        <td> {cli.nombres} </td>
-                        <td> {cli.apellidos} </td>
-                        <td> {cli.telefono} </td>
-                        <td> {cli.email} </td>
-                        <td> {cli.direccion} </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-    );
-}
-export default Cliente;
+// Crear un nuevo cliente
+router.post("/", async (req, res) => {
+  const { nombre, esActivo } = req.body;
+  try {
+    const nuevoCliente = await Cliente.create({ nombre, esactivo: esActivo });
+    res.status(201).json(nuevoCliente);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Actualizar un cliente
+router.put("/:id", async (req, res) => {
+  const { nombre, esactivo } = req.body;
+  try {
+    const cliente = await Cliente.findByPk(req.params.id);
+    if (!cliente) {
+      return res.status(404).json({ message: "Cliente no encontrado" });
+    }
+    await cliente.update({ nombre, esactivo });
+    res.json(cliente);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+// Eliminar un cliente
+router.delete("/:id", async (req, res) => {
+  try {
+    const cliente = await Cliente.findByPk(req.params.id);
+    if (!cliente) {
+      return res.status(404).json({ message: "Cliente no encontrado" });
+    }
+    await cliente.destroy();
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+module.exports = router;
