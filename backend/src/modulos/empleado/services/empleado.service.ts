@@ -28,8 +28,8 @@ export class EmpleadoService {
     return this.empleadoRepo.save(empleadoCreate);
   }
 
-  async ActualizarEmpleado(empleado: EmpleadoDto): Promise<Empleado> {
-    const empleadoActualizar = await this.empleadoRepo.findOne({where: { id: empleado.id },relations: ['especialidad']});
+  async ActualizarEmpleado(id :number, empleado: EmpleadoDto): Promise<Empleado> {
+    const empleadoActualizar = await this.empleadoRepo.findOne({where: { id }});
     if (!empleadoActualizar) {
       throw new NotFoundException(`Empleado con ID ${empleado.id} no encontrado`);
     }
@@ -37,7 +37,7 @@ export class EmpleadoService {
     if (!especialidad) {
       throw new Error('No se encuentra registrada la especialidad');
     }
-    empleadoActualizar.especialidad = especialidad;
+    //empleadoActualizar.especialidad = especialidad;
     this.empleadoRepo.merge(empleadoActualizar, empleado);
 
     return this.empleadoRepo.save(empleadoActualizar);

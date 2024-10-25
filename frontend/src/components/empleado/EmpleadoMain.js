@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "../../axiosConfig";
-import Empledo from "./Empleado";
+import Empleado from "./Empleado";
 import { Link } from "react-router-dom";
 
 function EmpleadoMain() {

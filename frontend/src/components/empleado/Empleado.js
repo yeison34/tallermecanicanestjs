@@ -3,7 +3,6 @@ import api from "../../axiosConfig";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-/*Componente Vehiculo */
 function Empleado({ onSelectEmpleado }) {
     const [empleado, setEmpleados] = useState([]);
 
@@ -59,7 +58,7 @@ function Empleado({ onSelectEmpleado }) {
             </header>
             <div className="list-wrapper">
                 <div className="btn-wrapper">
-                    <Link title="Crear vehiculo" to="/empleados/crear">
+                    <Link title="Crear empleado" to="/empleados/crear">
                         <button className="btn btn-success">
                             Crear Empleado
                         </button>
@@ -85,30 +84,30 @@ function Empleado({ onSelectEmpleado }) {
                         </tr>
                     </thead>
                     <tbody>
-                        {empleado.map((veh) => (
-                            <tr key={veh.id}>
+                        {empleado.map((emp) => (
+                            <tr key={emp.id}>
                                 <td
-                                    key={veh.id}
+                                    key={emp.id}
                                     onClick={() => {
-                                        onSelectEmpleado(veh.id);
+                                        onSelectEmpleado(emp.id);
                                     }}>
                                     {" "}
-                                    {veh.id}{" "}
+                                    {emp.id}{" "}
                                 </td>
-                                <td> {veh.cedula} </td>
-                                <td> {veh.nombres} </td>
-                                <td> {veh.apellidos} </td>
-                                <td> {veh.telefono} </td>
-                                <td> {veh.email} </td>
-                                <td> {veh.direccion} </td>
-                                <td> {veh.fechaingreso} </td>
-                                <td> {veh.especialidad.nombre} </td>
+                                <td> {emp.cedula} </td>
+                                <td> {emp.nombres} </td>
+                                <td> {emp.apellidos} </td>
+                                <td> {emp.telefono} </td>
+                                <td> {emp.email} </td>
+                                <td> {emp.direccion} </td>
+                                <td> {new Date(emp.fechaingreso).toLocaleDateString()} </td>
+                                <td> {emp.especialidad.nombre} </td>
                                 <td>
                                     <div className="table-icon-options">
                                         <Link
                                             title="Detalles"
                                             to={
-                                                "/empleados/detalles/" + veh.id
+                                                "/empleados/detalles/" + emp.id
                                             }>
                                             <i className="bi bi-eye-fill"></i>
                                         </Link>
@@ -116,14 +115,14 @@ function Empleado({ onSelectEmpleado }) {
                                             title="Editar"
                                             to={
                                                 "/empleados/actualizar/" +
-                                                veh.id
+                                                emp.id
                                             }>
                                             <i className="bi bi-pencil-fill"></i>
                                         </Link>
                                         <Link
                                             title="Eliminar"
                                             onClick={() =>
-                                                handleDelete(veh.id)
+                                                handleDelete(emp.id)
                                             }>
                                             <i className="bi bi-trash-fill"></i>
                                         </Link>

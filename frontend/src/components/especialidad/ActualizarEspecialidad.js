@@ -3,21 +3,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../../axiosConfig";
 import Swal from "sweetalert2";
 
-function ActualizarCliente() {
+function ActualizarEspecialidad() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [cliente, setCliente] = useState({ nombres: '', esactivo: true });
+  const [especialidad, setEspecialidad] = useState({ nombres: '', esactivo: true });
 
   useEffect(() => {
-    api.get(`/clientes/${id}`)
+    api.get(`/especialidad/${id}`)
       .then(response => {
-        setCliente(response.data);
+        setEspecialidad(response.data);
       })
       .catch(error => 
         Swal.fire({
           title: 'Error!',
           icon: 'error',
-          text: `No se pudo obtener el cliente: ${error.message}`,
+          text: `No se pudo obtener la especialidad: ${error.message}`,
           confirmButtonText: 'Cerrar',
           allowOutsideClick: false
         })
@@ -26,11 +26,11 @@ function ActualizarCliente() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCliente({ ...cliente, [name]: value });
+    setEspecialidad({ ...especialidad, [name]: value });
   };
 
   const handleSubmit = async () => {
-    console.log("Cliente: ", cliente);
+    console.log("Especialidad: ", especialidad);
     Swal.fire({
       title: "¿Confirmar la actualización?",
       showCancelButton: true,
@@ -38,14 +38,14 @@ function ActualizarCliente() {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.isConfirmed) {
-        api.put(`/clientes/${id}`, cliente)
+        api.put(`/especialidad/${id}`, especialidad)
           .then(() => {
             Swal.fire({
-              title: 'Cliente actualizado',
+              title: 'Especialidad actualizada',
               icon: 'success',
               confirmButtonText: 'Cerrar'
             });
-            navigate("/clientes/listar");
+            navigate(`/especialidades/detalles/${id}`);
           })
           .catch(error => 
             Swal.fire({
@@ -63,64 +63,27 @@ function ActualizarCliente() {
     <div className="container">
       <h2>Actualizar Cliente</h2>
       <div className="mb-3">
-        <label htmlFor="nombres" className="form-label">Nombre</label>
+        <label htmlFor="nombre" className="form-label">Nombre</label>
         <input
           type="text"
-          id="nombres"
-          name="nombres"
+          id="nombre"
+          name="nombre"
           className="form-control"
-          value={cliente.nombres}
+          value={especialidad.nombre}
           onChange={handleChange}
           required
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="apellidos" className="form-label">Apellidos</label>
-        <input
-          type="text"
-          id="apellidos"
-          name="apellidos"
-          className="form-control"
-          value={cliente.apellidos}
-          onChange={handleChange}
-          required
-        />
-      </div>
+  
 
       <div className="mb-3">
-        <label htmlFor="direccion" className="form-label">Dirección</label>
+        <label htmlFor="sueldo" className="form-label">Sueldo</label>
         <input
-          type="text"
-          id="direccion"
-          name="direccion"
+          type="num"
+          id="sueldo"
+          name="sueldo"
           className="form-control"
-          value={cliente.direccion}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="telefono" className="form-label">Teléfono</label>
-        <input
-          type="text"
-          id="telefono"
-          name="telefono"
-          className="form-control"
-          value={cliente.telefono}
-          onChange={handleChange}
-          required
-        />
-      </div>
-
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          className="form-control"
-          value={cliente.email}
+          value={especialidad.sueldo}
           onChange={handleChange}
           required
         />
@@ -132,8 +95,9 @@ function ActualizarCliente() {
           className="form-check-input"
           id="esactivo"
           name="esactivo"
-          checked={cliente.esactivo}
-          onChange={() => setCliente({ ...cliente, esactivo: !cliente.esactivo })}
+          value={especialidad.estado}
+          checked={especialidad.estado}
+          onChange={() => setEspecialidad({ ...especialidad, estado: !especialidad.estado })}
         />
         <label className="form-check-label" htmlFor="esactivo">
           ¿Está activo?
@@ -146,4 +110,4 @@ function ActualizarCliente() {
   );
 }
 
-export default ActualizarCliente;
+export default ActualizarEspecialidad;

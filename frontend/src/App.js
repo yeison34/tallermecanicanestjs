@@ -9,8 +9,8 @@ import DetallesVehiculo from './components/vehiculo/DetallesVehiculo';
 import CrearVehiculo from './components/vehiculo/CrearVehiculo';
 import ActualizarVehiculo from './components/vehiculo/ActualizarVehiculo';
 import CrearTipoVehiculo from './components/tipovehiculo/CrearTipoVehiculo';
-import TipoVehiculoListar from './components/tipovehiculo/TipoVehiculoListar'; // Asegúrate de importar el componente
-import DetallesTipoVehiculo from './components/tipovehiculo/DetallesTipoVehiculo'; // Componente de detalles
+import TipoVehiculoListar from './components/tipovehiculo/TipoVehiculoListar'; 
+import DetallesTipoVehiculo from './components/tipovehiculo/DetallesTipoVehiculo';
 import ActualizarTipoVehiculo from './components/tipovehiculo/ActualizarTipoVehiculo';
 import ClienteMain from "./components/cliente/ClienteMain";
 import ClienteListar from "./components/cliente/ClienteListar";
@@ -22,7 +22,11 @@ import Empleado from './components/empleado/Empleado';
 import CrearEmpleado from './components/empleado/CrearEmpleado';
 import DetallesEmpleado from './components/empleado/DetallesEmpleado';
 import ActualizarEmpleado from './components/empleado/ActualizarEmpleado';
-
+import EspecialidadListar from './components/especialidad/EspecialidadListar';
+import EspecialidadMain from './components/especialidad/EspecialidadMain';
+import CrearEspecialidad from './components/especialidad/CrearEspecialidad';
+import ActualizarEspecialidad from './components/especialidad/ActualizarEspecialidad';
+import DetallesEspecialidad from './components/especialidad/DetallesEspecialidad';
 
 
 function App() {
@@ -53,6 +57,11 @@ function App() {
             <Route path='/empleados/crear' element={<CrearEmpleado/>}/>
             <Route path='/empleados/detalles/:id' element={<DetallesEmpleado/>}/>
             <Route path='/empleados/actualizar/:id' element={<ActualizarEmpleado/>}/>
+            <Route path='/especialidades' element={<EspecialidadMain/>}/>
+            <Route path='/especialidades/listar' element={<EspecialidadListar/>}/>
+            <Route path='/especialidades/crear' element={<CrearEspecialidad/>}/>
+            <Route path='/especialidades/detalles/:id' element={<DetallesEspecialidad/>}/>
+            <Route path='/especialidades/actualizar/:id' element={<ActualizarEspecialidad/>}/>
           </Routes>
         </div>
       </div>

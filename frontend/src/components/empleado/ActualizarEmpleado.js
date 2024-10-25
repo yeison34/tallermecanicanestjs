@@ -12,9 +12,9 @@ function ActualizarEmpleado() {
     const [telefono, setTelefono] = useState("");
     const [email, setEmail] = useState("");
     const [direccion, setDireccion] = useState("");
-    const [fechaingreso, setFechaingreso] = useState(new Date().toISOString().substring(0, 10));
+    const [fechaingreso, setFechaingreso] = useState("");
     const [tiposEspecialidad, setTiposEspecialidad] = useState([]);
-    const [especialidadid, setEspecialidadid] = useState(0);
+    const [especialidadId, setEspecialidadId] = useState(0);
 
     const headersNgrok = {
         "Content-Type": "application/json",
@@ -40,8 +40,9 @@ function ActualizarEmpleado() {
                 setTelefono(empleado.telefono);
                 setEmail(empleado.email);
                 setDireccion(empleado.direccion);
-                setFechaingreso(empleado.fechaingreso);
-                // setEspecialidadid(empleado.especialidad?.nombre || "");
+                setFechaingreso(new Date(empleado.fechaingreso).toISOString("yyyy-MM-dd").split('T')[0]);
+                setEspecialidadId(empleado.especialidad?.id || "");
+                console.log("Este empleado: ", empleado);
             })
             .catch((error) =>
                 Swal.fire({
@@ -63,7 +64,7 @@ function ActualizarEmpleado() {
             email == "" ||
             direccion == "" ||
             fechaingreso == "" ||
-            especialidadid == 0
+            especialidadId == 0
         ) {
             return Swal.fire({
                 title: "Registrar todos los campos!",
@@ -75,14 +76,14 @@ function ActualizarEmpleado() {
         }
 
         const actualizarEmpleado = {
-            cedula ,
+            cedula,
             nombres,
             apellidos,
             telefono,
             email,
             direccion,
             fechaingreso,
-            especialidadid: { id: especialidadid },
+            especialidad: { id: especialidadId },
         };
         console.log(actualizarEmpleado);
         Swal.fire({
@@ -124,20 +125,6 @@ function ActualizarEmpleado() {
         <div className="container-fluid">
             <div className="row">
                 <h2>Actualizar Empleado</h2>
-                <div className="col-6 mb-3">
-                    <label htmlFor="cedula" className="form-label">
-                        Cedula
-                    </label>
-                    <input
-                        type="text"
-                        id="cedula"
-                        className="form-control"
-                        placeholder="Cedula"
-                        value={cedula}
-                        readOnly
-                        required
-                    />
-                </div>
                 <div className="col-6 mb-3">
                     <label htmlFor="nombres" className="form-label">
                         Nombres
@@ -239,8 +226,9 @@ function ActualizarEmpleado() {
                     <select
                         id="especialidad"
                         className="form-select"
+                        value={especialidadId}
                         onChange={(e) => {
-                            setEspecialidadid(+e.target.value);
+                            setEspecialidadId(+e.target.value);
                         }}>
                         <option disabled selected value>
                             {" "}

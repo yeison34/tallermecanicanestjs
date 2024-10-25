@@ -36,7 +36,7 @@ function DetallesEmpleado() {
                 setTelefono(empleado.telefono);
                 setEmail(empleado.email);
                 setDireccion(empleado.direccion);
-                setFechaingreso(empleado.fechaingreso);
+                setFechaingreso(new Date(empleado.fechaingreso).toLocaleDateString());
                 setEspecialidadid(empleado.especialidad?.nombre || "");
             })
             .catch((error) =>

@@ -21,8 +21,7 @@ export class EmpleadoController {
   async actualizarEmpleado(
     @Param('id') id: number, 
     @Body() empleadoDto: EmpleadoDto): Promise<Empleado> {
-      empleadoDto.id = id;
-      return this.servicioEmpleado.ActualizarEmpleado(empleadoDto);
+      return this.servicioEmpleado.ActualizarEmpleado(id, empleadoDto);
     }
 
   @Get(':id')
